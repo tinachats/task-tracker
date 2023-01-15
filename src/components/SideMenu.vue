@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-6 col-xl-3 d-none d-xl-block">
         <div class="d-flex align-items-start">
             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <button class="nav-link active" id="v-pills-dashboard-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dashboard" type="button" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">

@@ -4,17 +4,18 @@
             <h6 class="lead text-muted text-capitalize mb-0">{{ date }}</h6>
             <h4 class="fw-bold text-capitalize mt-0">today</h4>
         </div>
-        <button class="btn btn-dark rounded-pill">
-            <div class="d-flex align-items-center justify-content-center fw-bold">
-                <i class="bi-plus"></i> Add task
-            </div>
-        </button>
+        <Button btnType="btn-dark" btnText="Add task" btnIcon="bi-plus" />
     </div>
 </template>
 
 <script>
+   import Button from './Button.vue';
+
    export default {
     name: 'Header',
+    components: {
+        Button,
+    },
     data(){
         return{
             date: this.todaysDate()

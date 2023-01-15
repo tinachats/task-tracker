@@ -1,1 +1,48 @@
 @import 'base.css';
+.nav-pills .nav-link {
+    color: var(--bs-btn-bg) !important;
+    margin-bottom: 1rem;
+}
+
+.nav-pills .nav-link.active {
+    color: #fff !important;
+    background-color: var(--bs-btn-bg) !important;
+    border-color: var(--bs-btn-hover-border-color);
+}
+
+
+.task>.wrapper{
+    position: relative;
+}
+
+.task>.wrapper>.task-actions{
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-left: 1px solid var(--bs-border-color);
+    box-shadow: var(--shadow-sm);
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 0;
+    transition: width .4s ease-in-out;
+    opacity: 0;
+    z-index: 5;
+}
+
+.task:hover .task-actions{
+    opacity: 1;
+    width: 4rem;
+}
+
+.task>.wrapper>.task-actions>div{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.task>.wrapper>.task-actions>button{
+    margin-bottom: .35rem;
+}
