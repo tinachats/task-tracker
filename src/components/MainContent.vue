@@ -1,11 +1,11 @@
 <template>
-    <div class="col-12 col-md-6 col-xl-4">
+    <div class="col-12 col-md-6 col-xl-5">
         <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                 <div class="d-flex align-items-center" v-html="greeting"></div>
                 <h4 class="fw-bold mt-0">You've got {{ tasks.length == 1 ? '1 task' : `${tasks.length} tasks` }} today <i class="bi-journal-text"></i></h4>
                 <ul class="my-3">
-                   <Tasks :tasks="tasks"/>
+                   <Tasks @delete-task="deleteTask" @toggle-reminder="toggleReminder" :tasks="tasks"/>
                 </ul>
             </div>
             <div class="tab-pane fade" id="v-pills-analytics" role="tabpanel" aria-labelledby="v-pills-analytics-tab">
@@ -43,6 +43,42 @@ export default{
         }
     },
     methods: {
+        successAlert() {
+            iziToast.show({
+                title: 'Hey',
+                message: 'What would you like to add?'
+            });
+        },
+        questionAlert(title, question, lists, id){
+            iziToast.question({
+                timeout: false,
+                close: false,
+                overlay: true,
+                displayMode: 'once',
+                id: 'question',
+                zindex: 999,
+                title: title,
+                message: question,
+                position: 'center',
+                buttons: [
+                    ['<button class="btn btn-danger"><b>YES</b></button>', function (instance, toast) {
+                        lists = lists.filter(list => list.id != id);
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+            
+                    }, true],
+                    ['<button>NO</button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+            
+                    }],
+                ],
+                onClosing: function(instance, toast, closedBy){
+                    console.info('Closing | closedBy: ' + closedBy);
+                },
+                onClosed: function(instance, toast, closedBy){
+                    console.info('Closed | closedBy: ' + closedBy);
+                }
+            });
+        },
         userGreeting(){
             const hr = new Date().getHours();
             var greetingText, icon;
@@ -64,6 +100,16 @@ export default{
                 <h6 class="lead text-muted my-0">${greetingText}</h6>
             `;
             return output;
+        },
+        deleteTask(id){
+            if(confirm('Are you sure you want to delete this task?')){
+                this.tasks = this.tasks.filter(task => task.id != id);
+            }
+        },
+        toggleReminder(id){
+            this.tasks = this.tasks.map(task => 
+                task.id === id ? {...task, reminder: !task.reminder} : task
+            );
         }
     },
     created(){
@@ -76,6 +122,7 @@ export default{
                 content: 'Ligue 1 opener postponed after Marseille virus cases',
                 participants: ['Emma', 'Liam'],
                 location: 'Marlowe',
+                allDay: false,
                 start: '4:30 PM',
                 end: '17:45 PM',
                 reminder: false
@@ -88,6 +135,7 @@ export default{
                 content: 'Approval of a new project',
                 participants: ['Delroy'],
                 location: 'Sightglass Coffee',
+                allDay: false,
                 start: '00:30 AM',
                 end: '02:45 AM',
                 reminder: true
@@ -100,6 +148,7 @@ export default{
                 content: '',
                 participants: ['Emma', 'Liam', 'Tryson'],
                 location: '270 7th St, San Francisco, CA',
+                allDay: false,
                 start: '08:15 AM',
                 end: '10:45 AM',
                 reminder: true
@@ -112,6 +161,7 @@ export default{
                 content: 'Make and send prototypes to the client',
                 participants: ['Tinashe', 'Kudzanai', 'Lizzie', 'Taurai'],
                 location: 'work',
+                allDay: false,
                 start: '12:30 PM',
                 end: '14:45 PM',
                 reminder: true

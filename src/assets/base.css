@@ -1,7 +1,7 @@
 /* color palette from <https://github.com/vuejs/theme> */
 
 :root {
-    --app-color: #83ba43;
+    --app-color: var(--bs-dark);
     --baige: #ffebe6;
     --light-yellow: #fdf2dd;
     --light-violet: #e9d9fd;
@@ -55,19 +55,19 @@ ul {
     margin-right: 0 !important;
 }
 
-.baige{
+.baige {
     background-color: var(--baige) !important;
 }
 
-.light_yellow{
+.light_yellow {
     background-color: var(--light-yellow) !important;
 }
 
-.light_violet{
+.light_violet {
     background-color: var(--light-violet) !important;
 }
 
-.sky_blue{
+.sky_blue {
     background-color: var(--sky-blue) !important;
 }
 
@@ -75,7 +75,7 @@ ul {
     font-size: 80% !important
 }
 
-.btn-sm.rounded-circle{
+.btn-sm.rounded-circle {
     padding: 0;
     display: grid;
     justify-content: center;
@@ -85,6 +85,48 @@ ul {
     box-shadow: var(--shadow-sm);
 }
 
-.btn-sm.rounded-circle *{
+.btn-sm.rounded-circle * {
     margin: auto;
 }
+
+
+/* Checkboxes and Radio Buttons */
+
+.form-check {
+    display: block;
+    min-height: 1.3125rem;
+    padding-left: 1.5rem;
+    margin-bottom: 0.125rem;
+}
+
+.form-check-select .form-check-input:checked[type=checkbox] {
+    background-image: none;
+}
+
+.form-check-select .form-check-input:checked[type=checkbox]:hover {
+    background-color: var(--app-color);
+}
+
+.form-check-select .form-check-input {
+    position: relative;
+    z-index: 2;
+    width: 12px;
+    height: 12px;
+    background-color: var(--hover-bg);
+    border-width: 0;
+    border-radius: 50%;
+}
+
+.form-check-input:checked {
+    background-color: var(--app-color);
+    border-color: var(--app-color);
+}
+
+.form-check-input:focus {
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+
+/* /.Checkboxes and Radio Buttons */

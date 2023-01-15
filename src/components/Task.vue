@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div @dblclick="$emit('toggle-reminder', task.id)" class="wrapper">
         <div class="p-3">
             <h6 class="lead fw-bold text-capitalize">
                 {{ task.title }}
@@ -43,7 +43,7 @@ export default {
     },
     methods: {
         deleteTask(id){
-            console.log(id);
+            this.$emit('delete-task', id);
         },
         editTask(id){
             console.log(id);

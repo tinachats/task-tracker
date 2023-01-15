@@ -1,6 +1,6 @@
 <template>
-    <li v-for="task in tasks" :key="task.id" :class="`task shadow-sm border ${task.background} ${task.reminder ? 'reminder' : ''}`">
-        <Task :task="task" />   
+    <li v-for="task in tasks" :key="task.id" :class="`task shadow-sm border ${task.background} ${task.reminder ? 'reminder' : ''}`" @toggle-reminder="$emit('toggle-reminder', task.id)">
+        <Task @delete-task="$emit('delete-task', task.id)" @toggle-reminder="$emit('toggle-reminder', task.id)" :task="task" />   
     </li>
 </template>
 
@@ -13,7 +13,8 @@ export default {
     },
     props: {
         tasks: Array
-    }
+    },
+    emits: ['delete-task', 'toggle-reminder']
 }
 </script>
 

@@ -10,12 +10,11 @@
     border-color: var(--bs-btn-hover-border-color);
 }
 
-
-.task>.wrapper{
+.task>.wrapper {
     position: relative;
 }
 
-.task>.wrapper>.task-actions{
+.task>.wrapper>.task-actions {
     position: absolute;
     display: grid;
     justify-content: center;
@@ -32,17 +31,43 @@
     z-index: 5;
 }
 
-.task:hover .task-actions{
+.task:hover .task-actions {
     opacity: 1;
     width: 4rem;
 }
 
-.task>.wrapper>.task-actions>div{
+.task>.wrapper>.task-actions>div {
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
-.task>.wrapper>.task-actions>button{
+.task>.wrapper>.task-actions>button {
     margin-bottom: .35rem;
+}
+
+.form-control {
+    border-radius: 0 !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 2px solid var(--bs-border-color) !important;
+    background-color: transparent !important;
+    font-weight: bold !important;
+    outline: none !important;
+}
+
+.form-control:focus {
+    border-bottom: 2px solid var(--bs-dark) !important;
+    box-shadow: none !important;
+    transition: all .5s ease-in-out;
+}
+
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+    border-bottom-color: #dc3545 !important;
+}
+
+.was-validated .form-control:valid {
+    border-bottom-color: var(--green) !important;
 }
