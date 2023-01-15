@@ -1,7 +1,7 @@
 <template>
-    <button :class="`btn ${btnType} rounded-pill`">
+    <button @click="toggleAddTask" :class="`btn ${btnType} rounded-pill`">
         <div class="d-flex align-items-center justify-content-center fw-bold">
-            <i :class="btnIcon"></i> {{ btnText }}
+            <i :class="`${btnIcon} me-2`"></i> {{ btnText }}
         </div>
     </button>
 </template>
@@ -13,6 +13,11 @@
         btnText: String,
         btnType: String,
         btnIcon: String
+    },
+    methods: {
+        toggleAddTask(){
+            this.$emit('btn-click');
+        }
     }
    }
 </script>

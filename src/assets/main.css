@@ -46,6 +46,11 @@
     margin-bottom: .35rem;
 }
 
+input[type="color"] {
+    height: 32px !important;
+    width: 32px !important;
+}
+
 .form-control {
     border-radius: 0 !important;
     border-top: none !important;
@@ -55,6 +60,7 @@
     background-color: transparent !important;
     font-weight: bold !important;
     outline: none !important;
+    padding-left: 0 !important;
 }
 
 .form-control:focus {

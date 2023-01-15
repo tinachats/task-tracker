@@ -1,4 +1,6 @@
 <template>
+    <h2 class="fw-bold">Create task</h2>
+    <hr>
     <form @submit="addTask" method="post" class="row align-items-md-end g-3 my-2 needs-validation" novalidate>
         <div class="col-9">
             <div class="form-group">
@@ -9,7 +11,7 @@
         </div>
         <div class="col-2">
             <div class="form-group">
-                <input type="picker" class="form-control text-capitalize" name="background" id="background" v-model="background">
+                <input type="color" class="form-control form-control-color text-capitalize" name="background" id="background" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Choose your color" v-model="background">
             </div>
         </div>
         <div class="form-group">
@@ -67,7 +69,7 @@
                 id: Math.round(Math.random() * 10000),
                 title: '',
                 category: [],
-                background: [],
+                background: '',
                 content: '',
                 participants: [],
                 location: '',
@@ -93,8 +95,20 @@
                     end: this.end,
                     reminder: this.reminder
                 }
-                console.log(newTask);
+                this.$emit('add-task', newTask);
+                this.id = Math.round(Math.random() * 10000);
+                this.title = '';
+                this.category = ''
+                this.background = '';
+                this.content = '';
+                this.participants = '';
+                this.location = '';
+                this.allDay = false;
+                this.start = new Date();
+                this.end = new Date();
+                this.reminder = false;
             }
-        }
+        },
+        emits: ['add-task']
     }
 </script>

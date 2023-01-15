@@ -4,7 +4,7 @@
             <h6 class="lead text-muted text-capitalize mb-0">{{ date }}</h6>
             <h4 class="fw-bold text-capitalize mt-0">today</h4>
         </div>
-        <Button btnType="btn-dark" btnText="Add task" btnIcon="bi-plus" />
+        <Button @btn-click="$emit('toggle-add-task')" :btnType="showAddTask ? 'btn-outline-dark' : 'btn-dark'" :btnText="showAddTask ? 'Hide task form' : 'Show task form'" :btnIcon="showAddTask ? 'bi-chevron-up' : 'bi-chevron-down'" />
     </div>
 </template>
 
@@ -13,8 +13,11 @@
 
    export default {
     name: 'Header',
+    props: {
+        showAddTask: Boolean
+    },
     components: {
-        Button,
+    Button,
     },
     data(){
         return{

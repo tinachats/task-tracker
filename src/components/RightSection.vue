@@ -1,7 +1,7 @@
 <template>
-    <div class="col-12 col-md-6 col-xl-4">
+    <div class="col-12 col-md-6 col-xl-5">
         <Header />
-        <AddTask />
+        <AddTask @add-task="$emit('add-task', newTask)"/>
     </div>
 </template>
 

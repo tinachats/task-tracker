@@ -1,5 +1,5 @@
 <template>
-    <li v-for="task in tasks" :key="task.id" :class="`task shadow-sm border ${task.background} ${task.reminder ? 'reminder' : ''}`" @toggle-reminder="$emit('toggle-reminder', task.id)">
+    <li v-for="task in tasks" :key="task.id" :class="`task shadow-sm border ${task.background} ${task.reminder ? 'reminder' : ''}`" @toggle-reminder="$emit('toggle-reminder', task.id)" :style="`background-color: ${task.background}`">
         <Task @delete-task="$emit('delete-task', task.id)" @toggle-reminder="$emit('toggle-reminder', task.id)" :task="task" />   
     </li>
 </template>

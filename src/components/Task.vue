@@ -41,6 +41,13 @@ export default {
     props: {
         task: Object
     },
+    computed: {
+        dateToString(date){
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const [y, m, d] = date.split('-')
+            return `${months[m]} ${d}, ${y}`;
+        }
+    },
     methods: {
         deleteTask(id){
             this.$emit('delete-task', id);

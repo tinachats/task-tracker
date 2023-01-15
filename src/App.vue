@@ -3,7 +3,6 @@
     <div class="row align-items-md-start gx-3 py-2">
        <SideMenu />
        <MainContent />
-       <RightSection />
     </div>
   </div>
 </template>
