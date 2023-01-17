@@ -17,7 +17,7 @@
         <div class="form-group">
             <label for="location" class="fw-bold">Location</label>
             <input type="text" class="form-control text-capitalize" name="location" id="location" placeholder="Location" v-model="location">
-        </div>
+        </div> 
         <div class="col-12 d-flex align-items-center justify-content-between">
             <label class="form-check-label text-start fw-bold ms-0" for="all-day">All day</label>
             <div class="form-check form-switch">
@@ -66,9 +66,9 @@
         name: 'AddTask',
         data(){
             return{
-                id: Math.round(Math.random() * 10000),
+                id: '',
                 title: '',
-                category: [],
+                category: '',
                 background: '',
                 content: '',
                 participants: [],
@@ -83,7 +83,6 @@
             addTask(e){
                 e.preventDefault();
                 const newTask = {
-                    id: this.id,
                     title: this.title,
                     category: this.category,
                     background: this.background,
@@ -96,7 +95,7 @@
                     reminder: this.reminder
                 }
                 this.$emit('add-task', newTask);
-                this.id = Math.round(Math.random() * 10000);
+
                 this.title = '';
                 this.category = ''
                 this.background = '';

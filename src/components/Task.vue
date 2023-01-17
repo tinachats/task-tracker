@@ -4,7 +4,7 @@
             <h6 class="lead fw-bold text-capitalize">
                 {{ task.title }}
             </h6>
-            <p class="small text-muted">{{ task.content }}</p>
+            <p class="small text-dark">{{ task.content }}</p>
             <a class="d-flex align-items-center small fw-bold text-capitalize mb-3" :href="`https://www.google.com/search?q=${task.location}`" target="_blank">
                 <i class="bi-geo-alt me-1"></i> {{ task.location }}
             </a>

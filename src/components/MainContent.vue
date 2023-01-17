@@ -124,75 +124,57 @@ export default{
         toggleAddTask(){
             this.showAddTask = !this.showAddTask;
         },
-        addTask(task){
-            this.tasks = [...this.tasks, task];
+        async addTask(task){
+            const res = await fetch('http://localhost:5000/tasks', {
+                method: 'post',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(task)
+            });
+            const data = await res.json();
+            this.tasks = [...this.tasks, data];
         },
-        deleteTask(id){
+        async deleteTask(id){
             if(confirm('Are you sure you want to delete this task?')){
-                this.tasks = this.tasks.filter(task => task.id != id);
+                const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+                    method: 'DELETE'
+                });
+
+                res.status === 200 ? (this.tasks = this.tasks.filter(task => task.id != id)) : alert('Error in deleting task.')
             }
         },
-        toggleReminder(id){
-            this.tasks = this.tasks.map(task => 
-                task.id === id ? {...task, reminder: !task.reminder} : task
+        async toggleReminder(id){
+            const taskToToggle = await this.fetchTask(id);
+            const updatedTask = {...taskToToggle, reminder: !taskToToggle.reminder};
+
+            const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(updatedTask)
+            });
+
+            const data = await res.json();
+
+            this.tasks = this.tasks.map((task) => 
+                task.id === id ? {...task, reminder: data.reminder} : task
             );
+        },
+        async fetchTasks(){
+            const res = await fetch('http://localhost:5000/tasks');
+            const data = await res.json();
+            return data;
+        },
+        async fetchTask(id){
+            const res = await fetch(`http://localhost:5000/tasks/${id}`);
+            const data = await res.json();
+            return data;
         }
     },
-    created(){
-        this.tasks = [
-            {
-                id: 1,
-                title: 'Football',
-                category: 'sport',
-                background: 'baige',
-                content: 'Ligue 1 opener postponed after Marseille virus cases',
-                participants: ['Emma', 'Liam'],
-                location: 'Marlowe',
-                allDay: false,
-                start: '4:30 PM',
-                end: '17:45 PM',
-                reminder: false
-            },
-            {
-                id: 2,
-                title: 'Meeting',
-                category: 'work',
-                background: 'light_yellow',
-                content: 'Approval of a new project',
-                participants: ['Delroy'],
-                location: 'Sightglass Coffee',
-                allDay: false,
-                start: '00:30 AM',
-                end: '02:45 AM',
-                reminder: true
-            },
-            {
-                id: 3,
-                title: 'English Lesson',
-                category: 'school',
-                background: 'sky_blue',
-                content: '',
-                participants: ['Emma', 'Liam', 'Tryson'],
-                location: '270 7th St, San Francisco, CA',
-                allDay: false,
-                start: '08:15 AM',
-                end: '10:45 AM',
-                reminder: true
-            },
-            {
-                id: 4,
-                title: 'Make Prototypes',
-                category: 'work',
-                background: 'light_violet',
-                content: 'Make and send prototypes to the client',
-                participants: ['Tinashe', 'Kudzanai', 'Lizzie', 'Taurai'],
-                location: 'work',
-                allDay: false,
-                start: '12:30 PM',
-                end: '14:45 PM',
-                reminder: true
-            }
-        ];
+    async created(){
+        this.tasks = await this.fetchTasks();
       }
 }
 </script>

@@ -112,14 +112,14 @@ ul {
     z-index: 2;
     width: 12px;
     height: 12px;
-    background-color: var(--hover-bg);
+    background-color: var(--bs-border-color) !important;
     border-width: 0;
     border-radius: 50%;
 }
 
 .form-check-input:checked {
-    background-color: var(--app-color);
-    border-color: var(--app-color);
+    background-color: var(--app-color) !important;
+    border-color: var(--app-color) !important;
 }
 
 .form-check-input:focus {

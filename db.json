@@ -1,0 +1,48 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Football",
+      "category": "sport",
+      "background": "baige",
+      "content": "Ligue 1 opener postponed after Marseille virus cases",
+      "participants": [
+        "Emma",
+        "Liam"
+      ],
+      "location": "Marlowe",
+      "allDay": false,
+      "start": "4:30 PM",
+      "end": "17:45 PM",
+      "reminder": false
+    },
+    {
+      "id": 2,
+      "title": "Project Meeting",
+      "category": "work",
+      "background": "light_yellow",
+      "content": "Approval of a new project",
+      "participants": [
+        "Delroy"
+      ],
+      "location": "Sightglass Coffee",
+      "allDay": false,
+      "start": "00:30 AM",
+      "end": "02:45 AM",
+      "reminder": true
+    },
+    {
+      "title": "Robotics Club",
+      "category": "",
+      "background": "#bbe8d6",
+      "content": "This is a reminder to start working on robotics projects for this term.",
+      "participants": [],
+      "location": "13 Sawley Cl, Marlborough, Harare",
+      "allDay": false,
+      "start": "2023-01-20",
+      "end": "2023-01-22",
+      "reminder": false,
+      "id": 6
+    }
+  ]
+}
